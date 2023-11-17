@@ -1,0 +1,45 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "resilix distra-API Documentation",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/predict": {
+            "post": {
+                "summary": "Make a prediction",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "example": {
+                                "input_data": [1000]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "prediction": 0.75
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "error": "Invalid input data"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resilix Distra API Documentation</title>
+    <!-- Resilix Logo -->
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #333;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: #fff;
+        }
+
+        p,
+        pre,
+        code,
+        ul,
+        li {
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        code {
+            background-color: #555;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+
+        .api-section {
+            margin-bottom: 20px;
+            border: 1px solid #555;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #444;
+        }
+
+        .code-block {
+            background-color: #555;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        .response-code {
+            color: #2ecc71;
+        }
+
+        #swagger-ui {
+            margin-top: 20px;
+        }
+
+        .conclusion {
+            margin-top: 40px;
+            border-top: 1px solid #555;
+            padding-top: 20px;
+        }
+
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <!-- Swagger UI Styles -->
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/swagger-ui-dist@3.51.1/swagger-ui.css">
+    <!-- Poppins Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <img id="logo" src="/static/Resilixpng (2) 1.png" alt="Resilix Logo">
+
+    <h1>Resilix Distra API Documentation</h1>
+
+    <p>Welcome to the Resilix Distra API. This API allows you to make predictions using the Distra model.</p>
+
+    <h2>Base URL</h2>
+    <p><code>https://resilix.pythonanywhere.com/</code></p>
+
+    <div class="api-section">
+        <h2>Make a Prediction</h2>
+
+        <h3>Endpoint</h3>
+        <p><code>POST /predict</code></p>
+
+        <h3>Summary</h3>
+        <p>Make a prediction</p>
+
+        <h3>Request</h3>
+
+        <div class="code-block">
+            <h4>Body</h4>
+            <pre><code>{
+  "input_data": [1000]
+}</code></pre>
+        </div>
+
+        <ul>
+            <li><code>input_data</code> (array): An array of input data for prediction.</li>
+        </ul>
+        <h3>Response</h3>
+        <div class="code-block response-code">
+            <pre><code>{
+  "prediction": 0.75
+}</code></pre>
+        </div>
+    </div>
+
+    <h2>Endpoint</h2>
+    <div id="swagger-ui"></div>
+
+    <script src="https://unpkg.com/swagger-ui-dist@3.51.1/swagger-ui-bundle.js"></script>
+    <script src="https://unpkg.com/swagger-ui-dist@3.51.1/swagger-ui-standalone-preset.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const ui = SwaggerUIBundle({
+                spec: {
+                    openapi: "3.0.0",
+                    info: {
+                        title: "Resilix Distra API Documentation",
+                        version: "1.0.0"
+                    },
+                    paths: {
+                        "/predict": {
+                            post: {
+                                summary: "Make a prediction",
+                                parameters: [
+                                    {
+                                        name: "input_data",
+                                        in: "body",
+                                        description: "An array of input data for prediction.",
+                                        required: true,
+                                        schema: {
+                                            type: "array",
+                                            example: [1000]
+                                        }
+                                    }
+                                ],
+                                responses: {
+                                    200: {
+                                        description: "Successful response",
+                                        content: {
+                                            "application/json": {
+                                                example: {
+                                                    prediction: 0.75
+                                                }
+                                            }
+                                        }
+                                    },
+                                    400: {
+                                        description: "Bad request",
+                                        content: {
+                                            "application/json": {
+                                                example: {
+                                                    error: "Invalid input data"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                dom_id: '#swagger-ui',
+                presets: [
+                    SwaggerUIBundle.presets.apis,
+                    SwaggerUIStandalonePreset
+                ],
+                layout: "BaseLayout",
+            });
+        });
+    </script>
+
+    <div class="conclusion">
+        <h2>Conclusion</h2>
+        <p>Thank you for using the Resilix Distra API. If you have any questions or issues, please contact <a href="mailto:resilix1@gmail.com">resilix1@gmail.com</a>.</p>
+    </div>
+</body>
+
+</html>
